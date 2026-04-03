@@ -209,16 +209,6 @@ img {
     text-decoration: none;
 }
 
-.school-emblem {
-    width: 70px;
-    height: 70px;
-    object-fit: contain;
-    border: 3px solid var(--clr-gold);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    background-color: transparent;
-}
-
 .logo-text {
     display: flex;
     flex-direction: column;
@@ -391,21 +381,6 @@ img {
     background-color: rgba(197, 160, 89, 0.05);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
-}
-
-.philosophy-emblem {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    border: 2px solid var(--clr-gold);
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.philosophy-emblem:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
 }
 
 .section-heading {
