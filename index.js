@@ -227,41 +227,42 @@ document.addEventListener('DOMContentLoaded', function() {
 // Displays a matrix-style background with countdown and welcome sequence
 document.addEventListener('DOMContentLoaded', function() {
     const splash = document.querySelector('#splash-screen');
-    const sequenceContainer = document.querySelector('.splash-sequence');
     const body = document.body;
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
 
-    if (!splash || !sequenceContainer || !canvas) return;
+    if (!splash || !canvas) return;
 
     // Set canvas size
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Matrix characters
-    const matrixChars = 'M.E.R.I.S.H.A.W S.C.H.O.O.L 0123456789';
-    const fontSize = 14;
+    // Matrix characters - now using MERISHAW SCHOOL prominently
+    const matrixChars = 'MERISHAW SCHOOL';
+    const fontSize = 16;
     const columns = canvas.width / fontSize;
     const drops = [];
 
     // Initialize drops
     for (let x = 0; x < columns; x++) {
-        drops[x] = 1;
+        drops[x] = Math.random() * canvas.height / fontSize;
     }
 
-    // Matrix animation
+    // Matrix animation with more visible characters
     function drawMatrix() {
-        ctx.fillStyle = 'rgba(123, 17, 19, 0.05)';
+        ctx.fillStyle = 'rgba(123, 17, 19, 0.08)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         ctx.fillStyle = '#7b1113'; // Maroon
         ctx.font = fontSize + 'px monospace';
+        ctx.shadowColor = 'rgba(197, 160, 89, 0.6)';
+        ctx.shadowBlur = 8;
 
         for (let i = 0; i < drops.length; i++) {
             const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
             ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
                 drops[i] = 0;
             }
             drops[i]++;
@@ -296,22 +297,47 @@ document.addEventListener('DOMContentLoaded', function() {
         digit1.style.animation = 'digitEnlarge 1s ease-out forwards';
     }, 3500);
 
-    // Hide 1
+    // Hide 1 and start welcome collapse
     setTimeout(() => {
         digit1.style.opacity = '0';
+
+        // Start welcome text collapse animation
+        const welcomeText = document.querySelector('.splash-welcome');
+        if (welcomeText) {
+            welcomeText.style.animation = 'none'; // Stop fadeInUp
+            welcomeText.style.opacity = '1';
+
+            // Split welcome text into letters
+            const text = welcomeText.textContent;
+            welcomeText.textContent = '';
+            welcomeText.style.display = 'flex';
+            welcomeText.style.gap = '0.1em';
+
+            text.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char; // Non-breaking space
+                span.style.display = 'inline-block';
+                span.style.animation = `letterFall 0.8s ease-in-out ${index * 0.05}s forwards`;
+                welcomeText.appendChild(span);
+            });
+        }
     }, 5000);
 
-    // Show welcome and sequence
+    // Show VOILA! and hide splash
     setTimeout(() => {
-        sequenceContainer.style.opacity = '1';
-    }, 5500);
+        const welcomeText = document.querySelector('.splash-welcome');
+        if (welcomeText) {
+            welcomeText.textContent = 'VOILA!';
+            welcomeText.style.animation = 'fadeInUp 0.5s ease forwards';
+        }
 
-    // Hide splash after 8 seconds
-    setTimeout(() => {
-        clearInterval(matrixInterval);
-        splash.classList.add('hide');
-        body.classList.remove('splash-active');
-    }, 8000);
+        // Hide splash after VOILA!
+        setTimeout(() => {
+            clearInterval(matrixInterval);
+            splash.classList.add('hide');
+            body.classList.remove('splash-active');
+        }, 1000);
+    }, 6000);
 
     // Remove element
     splash.addEventListener('transitionend', () => {

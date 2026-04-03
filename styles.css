@@ -136,31 +136,6 @@ body.splash-active {
     animation-delay: 4s;
 }
 
-.splash-sequence {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.9rem;
-    max-width: 860px;
-    opacity: 0;
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 5.5s;
-}
-
-.splash-sequence span {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 1.05rem;
-    text-transform: uppercase;
-    color: var(--clr-white);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    padding: 0.75rem 1.15rem;
-    border-radius: 999px;
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.16);
-    animation: floatWord 3.6s ease-in-out infinite;
-}
-
 @keyframes bombRotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -197,6 +172,17 @@ body.splash-active {
     }
 }
 
+@keyframes letterFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -205,15 +191,6 @@ body.splash-active {
     100% {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes floatWord {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-12px);
     }
 }
 
