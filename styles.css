@@ -340,12 +340,12 @@ img {
 }
 
 .social-icon {
-    width: 1rem;
-    height: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
     display: inline-block;
     margin-right: 0.6rem;
     vertical-align: middle;
-    fill: currentColor;
+    fill: unset;
 }
 
 /* =========================================
