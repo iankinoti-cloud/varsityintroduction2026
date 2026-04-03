@@ -224,36 +224,96 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Splash Screen Intro Animation
-// Displays a vinyl graffiti-style welcome animation before revealing the page
+// Displays a matrix-style background with countdown and welcome sequence
 document.addEventListener('DOMContentLoaded', function() {
     const splash = document.querySelector('#splash-screen');
     const sequenceContainer = document.querySelector('.splash-sequence');
     const body = document.body;
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
 
-    if (!splash || !sequenceContainer) return;
+    if (!splash || !sequenceContainer || !canvas) return;
 
-    const words = ['I', 'AM', 'WHO', 'I', 'AM', 'BECAUSE', 'OF', 'WHO', 'WE', 'ARE'];
-    words.forEach((word, index) => {
-        const span = document.createElement('span');
-        span.textContent = word;
-        span.style.animationDelay = `${2.6 + index * 0.12}s`;
-        span.style.opacity = '1';
-        span.style.animation = `floatWord 3.6s ease-in-out ${2.6 + index * 0.12}s infinite`;
-        sequenceContainer.appendChild(span);
-    });
+    // Set canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    // Reveal the floating word sequence after the welcome line appears
+    // Matrix characters
+    const matrixChars = 'M.E.R.I.S.H.A.W S.C.H.O.O.L 0123456789';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+
+    // Initialize drops
+    for (let x = 0; x < columns; x++) {
+        drops[x] = 1;
+    }
+
+    // Matrix animation
+    function drawMatrix() {
+        ctx.fillStyle = 'rgba(123, 17, 19, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#7b1113'; // Maroon
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+
+    // Start matrix animation
+    const matrixInterval = setInterval(drawMatrix, 35);
+
+    // Countdown animation
+    const digit3 = document.getElementById('digit-3');
+    const digit2 = document.getElementById('digit-2');
+    const digit1 = document.getElementById('digit-1');
+
+    // Show 3
+    setTimeout(() => {
+        digit3.style.opacity = '1';
+        digit3.style.animation = 'digitEnlarge 1s ease-out forwards';
+    }, 500);
+
+    // Hide 3, show 2
+    setTimeout(() => {
+        digit3.style.opacity = '0';
+        digit2.style.opacity = '1';
+        digit2.style.animation = 'digitEnlarge 1s ease-out forwards';
+    }, 2000);
+
+    // Hide 2, show 1
+    setTimeout(() => {
+        digit2.style.opacity = '0';
+        digit1.style.opacity = '1';
+        digit1.style.animation = 'digitEnlarge 1s ease-out forwards';
+    }, 3500);
+
+    // Hide 1
+    setTimeout(() => {
+        digit1.style.opacity = '0';
+    }, 5000);
+
+    // Show welcome and sequence
     setTimeout(() => {
         sequenceContainer.style.opacity = '1';
-    }, 2800);
+    }, 5500);
 
-    // Hide the splash screen after the intro completes
+    // Hide splash after 8 seconds
     setTimeout(() => {
+        clearInterval(matrixInterval);
         splash.classList.add('hide');
         body.classList.remove('splash-active');
-    }, 6200);
+    }, 8000);
 
-    // Remove the element from DOM once transition finishes
+    // Remove element
     splash.addEventListener('transitionend', () => {
         if (splash.classList.contains('hide')) {
             splash.remove();

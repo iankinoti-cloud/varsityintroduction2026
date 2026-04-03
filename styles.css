@@ -61,6 +61,15 @@ body.splash-active {
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
+.matrix-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
 #splash-screen.hide {
     opacity: 0;
     visibility: hidden;
@@ -68,6 +77,8 @@ body.splash-active {
 }
 
 .splash-content {
+    position: relative;
+    z-index: 2;
     max-width: 900px;
     width: 100%;
     display: flex;
@@ -83,7 +94,7 @@ body.splash-active {
     border: 8px solid var(--clr-maroon);
     border-radius: 50%;
     box-shadow: 0 0 0 20px rgba(123, 17, 19, 0.15), 0 20px 60px rgba(0, 0, 0, 0.35);
-    animation: splashPulse 2s ease-in-out infinite;
+    animation: bombRotate 2s linear infinite, bombPulse 1s ease-in-out infinite alternate;
 }
 
 .splash-graffiti {
@@ -109,20 +120,9 @@ body.splash-active {
     background: rgba(255, 255, 255, 0.04);
     border: 2px solid rgba(255, 255, 255, 0.18);
     box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.05);
-    animation: numberJuggle 1.6s cubic-bezier(0.22, 1, 0.36, 1) infinite both,
-               numberGlow 2.2s ease-in-out infinite alternate;
-}
-
-.splash-graffiti .splash-digit:nth-child(1) {
-    animation-delay: 0s, 0s;
-}
-
-.splash-graffiti .splash-digit:nth-child(2) {
-    animation-delay: 0.15s, 0.15s;
-}
-
-.splash-graffiti .splash-digit:nth-child(3) {
-    animation-delay: 0.3s, 0.3s;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: digitGlow 2.2s ease-in-out infinite alternate;
 }
 
 .splash-welcome {
@@ -133,7 +133,7 @@ body.splash-active {
     color: var(--clr-cream);
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
-    animation-delay: 1.6s;
+    animation-delay: 4s;
 }
 
 .splash-sequence {
@@ -144,7 +144,7 @@ body.splash-active {
     max-width: 860px;
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
-    animation-delay: 2.8s;
+    animation-delay: 5.5s;
 }
 
 .splash-sequence span {
@@ -161,61 +161,39 @@ body.splash-active {
     animation: floatWord 3.6s ease-in-out infinite;
 }
 
-@keyframes splashPulse {
-    0%, 100% {
+@keyframes bombRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes bombPulse {
+    0% {
         transform: scale(1);
         box-shadow: 0 0 0 20px rgba(123, 17, 19, 0.15), 0 20px 60px rgba(0, 0, 0, 0.35);
     }
-    50% {
-        transform: scale(1.08);
+    100% {
+        transform: scale(1.1);
         box-shadow: 0 0 0 32px rgba(123, 17, 19, 0.12), 0 24px 70px rgba(0, 0, 0, 0.35);
     }
 }
 
-@keyframes numberJuggle {
-    0% {
-        transform: translateY(0) rotate(0deg) scale(1);
-    }
-    20% {
-        transform: translateY(-26px) rotate(-15deg) scale(1.12);
-    }
-    40% {
-        transform: translateX(10px) rotate(12deg) scale(0.98);
-    }
-    60% {
-        transform: translateY(20px) rotate(-10deg) scale(1.05);
-    }
-    80% {
-        transform: translateX(-8px) rotate(8deg) scale(1.08);
-    }
-    100% {
-        transform: translateY(0) rotate(0deg) scale(1);
-    }
+@keyframes digitGlow {
+    0% { filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.45)); }
+    100% { filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8)); }
 }
 
-@keyframes numberGlow {
+@keyframes digitEnlarge {
     0% {
-        filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.45));
+        transform: scale(0.5);
+        opacity: 0;
     }
     50% {
-        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
-    }
-    100% {
-        filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.55));
-    }
-}
-
-@keyframes graffitiDrop {
-    0% {
-        opacity: 0;
-        transform: translateY(-120px) rotate(-22deg) scale(0.8);
-    }
-    70% {
+        transform: scale(1.5);
         opacity: 1;
-        transform: translateY(10px) rotate(-8deg) scale(1.05);
     }
     100% {
-        transform: translateY(0) rotate(-10deg) scale(1);
+        transform: scale(1);
+        opacity: 1;
     }
 }
 
