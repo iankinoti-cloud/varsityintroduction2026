@@ -1,0 +1,915 @@
+/* =========================================
+   CSS Variables & Design System
+   ========================================= */
+   :root {
+    /* Colors based on text: Maroon & Cream */
+    --clr-maroon: #7b1113;
+    --clr-maroon-dark: #5a0c0e;
+    --clr-cream: #fbf9f6;
+    --clr-white: #ffffff;
+    --clr-gold: #c5a059;
+    --clr-text-main: #333333;
+    --clr-text-light: #666666;
+    --clr-footer: #1a1a1a;
+
+    /* Typography */
+    --font-serif: 'Merriweather', serif;
+    --font-sans: 'Oswald', sans-serif;
+
+    /* Transitions */
+    --transition-fast: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* =========================================
+   Reset & Base Styles
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-serif);
+    color: var(--clr-text-main);
+    background-color: var(--clr-cream);
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    color: var(--clr-maroon);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================================
+   Layout Utilities
+   ========================================= */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.block-bg {
+    background-color: var(--clr-white);
+}
+
+/* =========================================
+   Buttons
+   ========================================= */
+.cta-button {
+    display: inline-block;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    border-radius: 2px; /* Very slight rounding for classic feel */
+}
+
+.primary-btn {
+    background-color: var(--clr-maroon);
+    color: var(--clr-white);
+    border: 2px solid var(--clr-maroon);
+}
+
+.primary-btn:hover {
+    background-color: var(--clr-white);
+    color: var(--clr-maroon);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--clr-white);
+    border: 2px solid var(--clr-white);
+}
+
+.secondary-btn:hover {
+    background-color: var(--clr-white);
+    color: var(--clr-maroon);
+}
+
+/* Pixie Dust Button Animation */
+.cta-button.pixie-clicked {
+    position: relative;
+    pointer-events: none;
+}
+
+.cta-button.pixie-clicked::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation: pixieDustPop 0.6s ease-out forwards;
+}
+
+.cta-button.pixie-clicked .button-text {
+    display: inline-block;
+    animation: textVanishUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pixieDustPop {
+    0% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(2);
+        background: radial-gradient(circle, rgba(197, 160, 89, 0.8) 0%, rgba(197, 160, 89, 0) 70%);
+    }
+}
+
+@keyframes textVanishUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.8);
+    }
+}
+
+@keyframes textDropDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-60px) scale(0.7);
+    }
+    50% {
+        transform: translateY(-20px) rotateX(-10deg) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) scale(1);
+    }
+}
+
+.cta-button.text-restore .button-text {
+    display: inline-block;
+    animation: textDropDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}\n\n/* =========================================
+   Header & Navigation
+   ========================================= */
+.site-header {
+    background-color: var(--clr-white);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.logo-subtext {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--clr-gold);
+    letter-spacing: 2px;
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.main-nav a {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    color: var(--clr-text-main);
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color var(--transition-fast);
+}
+
+/* --- Classic Underline Hover --- */
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--clr-maroon);
+    transition: width var(--transition-fast);
+}
+
+.main-nav a:hover {
+    color: var(--clr-maroon);
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* =========================================
+   Hero Section
+   ========================================= */
+.hero {
+    position: relative;
+    height: 80vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-maroon-dark);
+    /* Placeholder for background image */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: var(--clr-white);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.hero-title {
+    color: var(--clr-white);
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    display: inline-block;
+    white-space: normal;
+    word-break: break-word;
+    word-spacing: 0.4em;
+    letter-spacing: 0.08em;
+    max-width: 100%;
+    overflow: hidden;
+    line-height: 1.3;
+}
+
+.hero-title .swoosh-letter {
+    display: inline-block;
+    opacity: 0;
+    animation: heroSwoosh 8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    animation-fill-mode: both;
+    margin: 0 0.04em;
+}
+
+@keyframes heroSwoosh {
+    0% {
+        opacity: 0;
+        transform: translateX(-120%) rotate(-15deg) scale(0.8);
+    }
+    10% {
+        opacity: 1;
+        transform: translateX(0) rotate(0deg) scale(1);
+    }
+    35% {
+        opacity: 1;
+        transform: translateX(0) rotate(0deg) scale(1);
+    }
+    55% {
+        opacity: 1;
+        transform: translateX(8px) rotate(2deg) scale(1.02);
+    }
+    65% {
+        opacity: 0;
+        transform: translateX(120%) rotate(15deg) scale(0.8);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(120%) rotate(15deg) scale(0.8);
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+    color: var(--clr-cream);
+}
+
+.social-icon {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    margin-right: 0.6rem;
+    vertical-align: middle;
+    fill: currentColor;
+}
+
+/* =========================================
+   Philosophy Section
+   ========================================= */
+.philosophy {
+    padding: 6rem 0;
+}
+
+.philosophy-text {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-heading {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Typewriter effect for athletics heading */
+.typewriter-text {
+    min-height: 3.5rem;
+}
+
+.typewriter-text.active {
+    animation: none;
+}
+
+.typewriter-char {
+    opacity: 0;
+    display: inline;
+    animation: typewriterReveal 0.15s ease-out forwards;
+}
+
+@keyframes typewriterReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.philosophy-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--clr-text-light);
+}
+
+.ubuntu-quote {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: var(--clr-white);
+    border-left: 4px solid var(--clr-gold);
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--clr-maroon);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+/* =========================================
+   Mascot Section
+   ========================================= */
+.mascot-section {
+    padding: 6rem 0;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.mascot-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.mascot-image-wrapper {
+    position: relative;
+    transition: transform var(--transition-slow), filter var(--transition-slow);
+}
+
+/* Elegant classic framing for image with unique outline */
+.mascot-img {
+    border-radius: 4px;
+    box-shadow: 10px 10px 0px var(--clr-gold), 0 0 0 3px var(--clr-maroon);
+    transition: transform var(--transition-slow), box-shadow var(--transition-slow), filter var(--transition-slow);
+    border: 2px solid var(--clr-white);
+    position: relative;
+    z-index: 1;
+    /* Initial state for pop-up animation */
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+}
+
+.mascot-img.visible {
+    animation: mascotPop 1s ease-out forwards;
+}
+
+.mascot-image-wrapper:hover .mascot-img {
+    transform: scale(1.08) rotate(0deg);
+    box-shadow: 0 28px 60px rgba(123, 17, 19, 0.35), 0 0 0 4px rgba(255, 255, 255, 0.9);
+}
+
+.mascot-image-wrapper:hover + .mascot-info {
+    opacity: 0.8;
+    filter: blur(0.1rem);
+}
+
+/* Keyframe animation for surprising pop-up */
+@keyframes mascotPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-10deg);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1) rotate(5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.mascot-info p {
+    margin-bottom: 1.5rem;
+    color: var(--clr-text-light);
+}
+
+/* =========================================
+   Athletics / Varsity Section
+   ========================================= */
+.athletics-varsity {
+    padding: 6rem 0;
+}
+
+.section-header {
+    margin-bottom: 4rem;
+}
+
+.section-subheading {
+    font-style: italic;
+    color: var(--clr-text-light);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.varsity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.varsity-card {
+    background-color: var(--clr-white);
+    border: 1px solid #eaeaea;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    transition: box-shadow var(--transition-fast);
+}
+
+.varsity-card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.text-card {
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text-card h4 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--clr-text-main);
+}
+
+.text-card p {
+    color: var(--clr-text-light);
+}
+
+/* =========================================
+   Jacket Image Animations - Wiggle & Card Flip
+   ========================================= */
+
+@keyframes jacketWiggle {
+    0% { 
+        transform: rotateY(0deg) rotateZ(0deg) scale(1);
+    }
+    15% { 
+        transform: rotateY(-12deg) rotateZ(-3deg) scale(1.02);
+    }
+    30% { 
+        transform: rotateY(-8deg) rotateZ(-2deg) scale(1.04);
+    }
+    45% { 
+        transform: rotateY(0deg) rotateZ(0deg) scale(1.05);
+    }
+    60% { 
+        transform: rotateY(12deg) rotateZ(3deg) scale(1.04);
+    }
+    75% { 
+        transform: rotateY(8deg) rotateZ(2deg) scale(1.02);
+    }
+    100% { 
+        transform: rotateY(0deg) rotateZ(0deg) scale(1);
+    }
+}
+
+.image-card {
+    overflow: hidden;
+    /* Add a background in case image is missing */
+    background-color: #f0f0f0;
+    aspect-ratio: 3/4; /* Ensure perfect fit with consistent aspect ratio */
+    perspective: 1000px;
+}
+
+/* Classic Image Zoom Hover with unique outline */
+.jacket-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+    border: 3px solid var(--clr-maroon);
+    box-shadow: 0 0 10px rgba(123, 17, 19, 0.3);
+    transform-style: preserve-3d;
+}
+
+.image-card:hover .jacket-img {
+    animation: jacketWiggle 0.8s ease-in-out infinite;
+}
+
+/* =========================================
+   Varsity Standard Typewriter with Green Glow
+   ========================================= */
+
+@keyframes varsityTypewriter {
+    0% {
+        width: 0;
+        border-right: 3px solid #22c55e;
+        text-shadow: 0 0 10px #22c55e, 0 0 20px #16a34a;
+    }
+    99% {
+        border-right: 3px solid #22c55e;
+        text-shadow: 0 0 10px #22c55e, 0 0 20px #16a34a;
+    }
+    100% {
+        width: 100%;
+        border-right: none;
+        text-shadow: none;
+    }
+}
+
+.varsity-typewriter {
+    overflow: hidden;
+    white-space: normal;
+    border-right: 3px solid #22c55e;
+}
+
+.varsity-typewriter.active {
+    animation: varsityTypewriter 8s steps(250, end) forwards;
+}
+
+/* =========================================
+   Spirit Shop Section
+   ========================================= */
+.spirit-shop {
+    background-color: var(--clr-maroon);
+    color: var(--clr-white);
+    padding: 6rem 0;
+}
+
+.spirit-shop .section-heading {
+    color: var(--clr-gold);
+}
+
+.spirit-shop p {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    font-size: 1.1rem;
+    color: var(--clr-cream);
+}
+
+.spirit-shop .primary-btn {
+    background-color: var(--clr-gold);
+    color: var(--clr-maroon-dark);
+    border-color: var(--clr-gold);
+}
+
+.spirit-shop .primary-btn:hover {
+    background-color: transparent;
+    color: var(--clr-gold);
+}
+
+/* =========================================
+   Footer
+   ========================================= */
+.site-footer {
+    background-color: var(--clr-footer);
+    color: var(--clr-cream);
+    padding: 5rem 0 2rem 0;
+}
+
+.site-footer.glow {
+    animation: contactGlow 3s ease-in-out forwards;
+}
+
+@keyframes contactGlow {
+    0% {
+        box-shadow: inset 0 0 0 rgba(197, 160, 89, 0), 0 0 20px rgba(197, 160, 89, 0);
+    }
+    50% {
+        box-shadow: inset 0 0 30px rgba(197, 160, 89, 0.6), 0 0 40px rgba(197, 160, 89, 0.8);
+    }
+    100% {
+        box-shadow: inset 0 0 0 rgba(197, 160, 89, 0), 0 0 20px rgba(197, 160, 89, 0);
+    }
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-brand h2 {
+    color: var(--clr-white);
+    margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+    font-style: italic;
+    color: var(--clr-gold);
+}
+
+.footer-links h4, .footer-social h4 {
+    color: var(--clr-gold);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-links.active-glow,
+.footer-social.active-glow {
+    animation: quickContactGlow 5s ease-in-out forwards;
+}
+
+@keyframes quickContactGlow {
+    0% {
+        box-shadow: inset 0 0 0 rgba(197, 160, 89, 0), 0 0 0 rgba(197, 160, 89, 0);
+    }
+    50% {
+        box-shadow: inset 0 0 25px rgba(197, 160, 89, 0.5), 0 0 30px rgba(197, 160, 89, 0.7);
+    }
+    100% {
+        box-shadow: inset 0 0 0 rgba(197, 160, 89, 0), 0 0 0 rgba(197, 160, 89, 0);
+    }
+}
+
+.site-footer ul li {
+    margin-bottom: 0.8rem;
+}
+
+.site-footer a {
+    color: #cccccc;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color var(--transition-fast);
+}
+
+/* Footer Link Underline Hover */
+.site-footer a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--clr-gold);
+    transition: width var(--transition-fast);
+}
+
+.site-footer a:hover {
+    color: var(--clr-white);
+}
+
+.site-footer a:hover::after {
+    width: 100%;
+}
+
+.footer-bottom {
+    border-top: 1px solid #333333;
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    color: #888888;
+}
+
+/* =========================================
+   Responsive Media Queries
+   ========================================= */
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .mascot-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .hero {
+        min-height: 65vh;
+        padding: 3rem 0;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        line-height: 1.1;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        padding: 12px 22px;
+    }
+
+    .section-heading {
+        font-size: 2rem;
+    }
+
+    .philosophy, .mascot-section, .athletics-varsity, .spirit-shop {
+        padding: 4rem 0;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .footer-links, .footer-social {
+        justify-self: center;
+    }
+
+    .site-footer a::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0 0.9rem;
+    }
+
+    .header-container {
+        padding: 0 0.5rem;
+    }
+
+    .main-nav ul {
+        gap: 0.5rem;
+    }
+
+    .hero {
+        min-height: 60vh;
+        padding: 2.5rem 0;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.98rem;
+    }
+
+    .hero-actions,
+    .footer-brand,
+    .footer-links,
+    .footer-social {
+        width: 100%;
+    }
+
+    .cta-button {
+        width: 100%;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .varsity-card {
+        min-width: 0;
+    }
+
+    .text-card {
+        padding: 2rem 1.2rem;
+    }
+
+    .spirit-shop {
+        padding: 4rem 0;
+    }
+
+    .footer-container {
+        padding: 0 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem;
+        letter-spacing: 0.5px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .section-heading {
+        font-size: 1.75rem;
+    }
+
+    .section-subheading {
+        font-size: 1rem;
+    }
+
+    .text-card {
+        padding: 1.6rem 1rem;
+    }
+
+    .varsity-grid {
+        gap: 1rem;
+    }
+
+    .footer-container {
+        gap: 1.5rem;
+    }
+
+    .footer-links h4,
+    .footer-social h4 {
+        font-size: 1.1rem;
+    }
+}
+
