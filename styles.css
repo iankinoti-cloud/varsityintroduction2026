@@ -83,18 +83,46 @@ body.splash-active {
     border: 8px solid var(--clr-maroon);
     border-radius: 50%;
     box-shadow: 0 0 0 20px rgba(123, 17, 19, 0.15), 0 20px 60px rgba(0, 0, 0, 0.35);
-    animation: splashPulse 2.8s ease-in-out infinite;
+    animation: splashPulse 2s ease-in-out infinite;
 }
 
 .splash-graffiti {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    perspective: 1200px;
+}
+
+.splash-graffiti .splash-digit {
     font-family: var(--font-sans);
-    font-size: clamp(4rem, 8vw, 6.5rem);
-    letter-spacing: 0.2rem;
-    color: #ffffff;
+    font-size: clamp(4rem, 9vw, 7rem);
+    color: #fff;
     text-transform: uppercase;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 50px rgba(197, 160, 89, 0.55);
-    transform: rotate(-10deg);
-    animation: graffitiDrop 1.1s ease-out forwards;
+    text-shadow: 0 0 18px rgba(255, 255, 255, 0.8), 0 0 40px rgba(197, 160, 89, 0.85);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 110px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.05);
+    animation: numberJuggle 1.6s cubic-bezier(0.22, 1, 0.36, 1) infinite both,
+               numberGlow 2.2s ease-in-out infinite alternate;
+}
+
+.splash-graffiti .splash-digit:nth-child(1) {
+    animation-delay: 0s, 0s;
+}
+
+.splash-graffiti .splash-digit:nth-child(2) {
+    animation-delay: 0.15s, 0.15s;
+}
+
+.splash-graffiti .splash-digit:nth-child(3) {
+    animation-delay: 0.3s, 0.3s;
 }
 
 .splash-welcome {
@@ -105,7 +133,7 @@ body.splash-active {
     color: var(--clr-cream);
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
-    animation-delay: 1.2s;
+    animation-delay: 1.6s;
 }
 
 .splash-sequence {
@@ -116,7 +144,7 @@ body.splash-active {
     max-width: 860px;
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
-    animation-delay: 2.3s;
+    animation-delay: 2.8s;
 }
 
 .splash-sequence span {
@@ -139,8 +167,41 @@ body.splash-active {
         box-shadow: 0 0 0 20px rgba(123, 17, 19, 0.15), 0 20px 60px rgba(0, 0, 0, 0.35);
     }
     50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 0 30px rgba(123, 17, 19, 0.12), 0 24px 70px rgba(0, 0, 0, 0.35);
+        transform: scale(1.08);
+        box-shadow: 0 0 0 32px rgba(123, 17, 19, 0.12), 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+}
+
+@keyframes numberJuggle {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    20% {
+        transform: translateY(-26px) rotate(-15deg) scale(1.12);
+    }
+    40% {
+        transform: translateX(10px) rotate(12deg) scale(0.98);
+    }
+    60% {
+        transform: translateY(20px) rotate(-10deg) scale(1.05);
+    }
+    80% {
+        transform: translateX(-8px) rotate(8deg) scale(1.08);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+}
+
+@keyframes numberGlow {
+    0% {
+        filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.45));
+    }
+    50% {
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
+    }
+    100% {
+        filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.55));
     }
 }
 

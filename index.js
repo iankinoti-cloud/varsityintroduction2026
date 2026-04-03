@@ -245,13 +245,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Reveal the floating word sequence after the welcome line appears
     setTimeout(() => {
         sequenceContainer.style.opacity = '1';
-    }, 2300);
+    }, 2800);
 
     // Hide the splash screen after the intro completes
     setTimeout(() => {
         splash.classList.add('hide');
         body.classList.remove('splash-active');
-    }, 5600);
+    }, 6200);
 
     // Remove the element from DOM once transition finishes
     splash.addEventListener('transitionend', () => {
