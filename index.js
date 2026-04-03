@@ -223,3 +223,41 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(varsityText);
 });
 
+// Splash Screen Intro Animation
+// Displays a vinyl graffiti-style welcome animation before revealing the page
+document.addEventListener('DOMContentLoaded', function() {
+    const splash = document.querySelector('#splash-screen');
+    const sequenceContainer = document.querySelector('.splash-sequence');
+    const body = document.body;
+
+    if (!splash || !sequenceContainer) return;
+
+    const words = ['I', 'AM', 'WHO', 'I', 'AM', 'BECAUSE', 'OF', 'WHO', 'WE', 'ARE'];
+    words.forEach((word, index) => {
+        const span = document.createElement('span');
+        span.textContent = word;
+        span.style.animationDelay = `${2.6 + index * 0.12}s`;
+        span.style.opacity = '1';
+        span.style.animation = `floatWord 3.6s ease-in-out ${2.6 + index * 0.12}s infinite`;
+        sequenceContainer.appendChild(span);
+    });
+
+    // Reveal the floating word sequence after the welcome line appears
+    setTimeout(() => {
+        sequenceContainer.style.opacity = '1';
+    }, 2300);
+
+    // Hide the splash screen after the intro completes
+    setTimeout(() => {
+        splash.classList.add('hide');
+        body.classList.remove('splash-active');
+    }, 5600);
+
+    // Remove the element from DOM once transition finishes
+    splash.addEventListener('transitionend', () => {
+        if (splash.classList.contains('hide')) {
+            splash.remove();
+        }
+    });
+});
+
