@@ -317,13 +317,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const span = document.createElement('span');
                 span.textContent = char === ' ' ? '\u00A0' : char; // Non-breaking space
                 span.style.display = 'inline-block';
-                span.style.animation = `letterFall 0.8s ease-in-out ${index * 0.05}s forwards`;
+                span.style.animation = `letterFall 0.8s ease-in-out ${index * 0.25}s forwards`;
                 welcomeText.appendChild(span);
             });
         }
     }, 5000);
 
-    // Show VOILA! and hide splash
+    // Show VOILA! after all letters have fallen
     setTimeout(() => {
         const welcomeText = document.querySelector('.splash-welcome');
         if (welcomeText) {
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
             splash.classList.add('hide');
             body.classList.remove('splash-active');
         }, 1000);
-    }, 6000);
+    }, 7500);
 
     // Remove element
     splash.addEventListener('transitionend', () => {
