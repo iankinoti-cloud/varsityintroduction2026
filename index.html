@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merishaw School | Home Of The Boychild</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Google Fonts for a classic, collegiate look -->
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts for international brand typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for international icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="splash-active">
 
@@ -38,10 +40,24 @@
                     <li><a href="#about">Our Philosophy</a></li>
                     <li><a href="#athletics">Athletics</a></li>
                     <li><a href="#mascot">The Mascot</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#shop">Varsity Shop</a></li>
                 </ul>
             </nav>
-            <a href="#contact" class="cta-button primary-btn">JOIN US!</a>
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Search..." id="search-input">
+                    <button type="button" id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="language-selector">
+                    <select id="language-select">
+                        <option value="en">EN</option>
+                        <option value="sw">SW</option>
+                        <option value="fr">FR</option>
+                    </select>
+                </div>
+                <a href="#contact" class="cta-button primary-btn">JOIN US!</a>
+            </div>
         </div>
     </header>
 
@@ -117,6 +133,92 @@
             </div>
         </section>
 
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-header center-text">
+                    <h3 class="section-heading">What Our Community Says</h3>
+                    <p class="section-subheading">International voices celebrating Merishaw excellence</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Merishaw School transformed my son's confidence and leadership skills. The Ubuntu philosophy is truly life-changing."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <span>Parent, Nairobi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"The athletics program here is world-class. I've represented Kenya internationally thanks to the training I received."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Kiprop</h4>
+                                <span>Alumnus, Track & Field Champion</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Merishaw's commitment to excellence and character development sets it apart from any other institution."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Dr. Amara Okafor</h4>
+                                <span>Education Consultant, Lagos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Global Recognition Section -->
+        <section class="recognition block-bg">
+            <div class="container">
+                <div class="section-header center-text">
+                    <h3 class="section-heading">International Recognition</h3>
+                    <p class="section-subheading">Accredited excellence on the global stage</p>
+                </div>
+                <div class="recognition-grid">
+                    <div class="recognition-item">
+                        <i class="fas fa-award"></i>
+                        <h4>IB World School</h4>
+                        <p>Authorized International Baccalaureate Program</p>
+                    </div>
+                    <div class="recognition-item">
+                        <i class="fas fa-globe"></i>
+                        <h4>UNESCO Partnership</h4>
+                        <p>Committed to global education standards</p>
+                    </div>
+                    <div class="recognition-item">
+                        <i class="fas fa-trophy"></i>
+                        <h4>Championship Athletics</h4>
+                        <p>National and international sporting excellence</p>
+                    </div>
+                    <div class="recognition-item">
+                        <i class="fas fa-certificate"></i>
+                        <h4>Cambridge Assessment</h4>
+                        <p>Authorized examination center</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
        
 
         <section class="spirit-shop text-center" id="shop">
@@ -128,33 +230,93 @@
         </section>
     </main>
 
+    <!-- Newsletter Signup Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h3>Stay Connected</h3>
+                    <p>Join our global community and receive updates on Merishaw excellence</p>
+                </div>
+                <div class="newsletter-form">
+                    <form id="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" id="newsletter-email" placeholder="Enter your email address" required>
+                            <button type="submit" class="cta-button primary-btn">
+                                <span class="button-text">Subscribe</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="form-consent">
+                            <label>
+                                <input type="checkbox" id="newsletter-consent" required>
+                                <span>I agree to receive updates from Merishaw School</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
   
 
     <footer class="site-footer" id="contact">
         <div class="container footer-container">
             <div class="footer-brand">
-                <h2>MERISHAW  SCHOOL</h2>
+                <h2>MERISHAW SCHOOL</h2>
                 <p>I am because we are.</p>
+                <div class="footer-badges">
+                    <span class="badge">IB World School</span>
+                    <span class="badge">UNESCO Partner</span>
+                    <span class="badge">Cambridge International</span>
+                </div>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="mailto:merishawschools.sc.ke">Email: merishawschools.sc.ke</a></li>
-                    <li><a href="#">Contact Us Today! +254 721 303 303</a></li>
+                    <li><a href="#about">Our Philosophy</a></li>
+                    <li><a href="#athletics">Athletics</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#shop">Varsity Shop</a></li>
+                    <li><a href="#" id="contact-link">Contact Us</a></li>
                 </ul>
             </div>
+            <div class="footer-contact">
+                <h4>Get In Touch</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:merishawschools.sc.ke">merishawschools.sc.ke</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+254721303303">+254 721 303 303</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</p>
+                </div>
+            </div>
             <div class="footer-social">
-                <h4>TALK TO US TODAY!</h4>
-                <ul>
-                    <li><a href="https://instagram.com/merishawschool" target="_blank" rel="noreferrer noopener"><svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zm7.5-.5h-1.25a1 1 0 0 0-1 1V9.75a1 1 0 0 0 1 1H19.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zM18 4.5H6A3.5 3.5 0 0 0 2.5 8v8A3.5 3.5 0 0 0 6 19.5h12A3.5 3.5 0 0 0 21.5 16V8A3.5 3.5 0 0 0 18 4.5zm1.5 11.5a1.5 1.5 0 0 1-1.5 1.5H6a1.5 1.5 0 0 1-1.5-1.5V8A1.5 1.5 0 0 1 6 6.5h12A1.5 1.5 0 0 1 19.5 8v8z" fill="#000"/></svg>Instagram: @merishawschool</a></li>
-                    <li><a href="https://twitter.com/merishawschool" target="_blank" rel="noreferrer noopener"><svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 5.9c-.8.3-1.7.5-2.6.6a4.6 4.6 0 0 0 2-2.6 9.3 9.3 0 0 1-2.9 1.1 4.7 4.7 0 0 0-8 4.3A13.4 13.4 0 0 1 3 5.9a4.7 4.7 0 0 0 1.5 6.3 4.7 4.7 0 0 1-2.1-.6v.1a4.7 4.7 0 0 0 3.8 4.6 4.6 4.6 0 0 1-2.1.1 4.7 4.7 0 0 0 4.4 3.2 9.4 9.4 0 0 1-5.8 2 9.2 9.2 0 0 1-1.1-.1 13.3 13.3 0 0 0 7.2 2.1c8.6 0 13.3-7.1 13.3-13.3 0-.2 0-.4 0-.6a9.5 9.5 0 0 0 2.4-2.4z" fill="#000"/></svg>Twitter: @merishawschool</a></li>
-                    <li><a href="https://www.tiktok.com/@merishaw.school" target="_blank" rel="noreferrer noopener"><svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.1 3.6v9.4c0 1.2 1 2.1 2.2 2.1 1.2 0 2.2-1 2.2-2.1V9.5h1.5c.4 0 .8.1 1.2.2V7.4c-.4-.1-.8-.2-1.2-.2h-2.5V3.6h-1.4zm3.4 1.5c-.4 0-.8 0-1.1-.1v1.2c.3 0 .7.1 1 .1.2 0 .4 0 .6.1v1.9c-.2 0-.4 0-.6-.1-.3-.1-.6-.1-1-.1-1.2 0-2.2 1-2.2 2.2v6.6c0 .4.1.7.3 1 .2.2.5.4.9.4.3 0 .7-.1.9-.4.2-.2.3-.5.3-.8v-5.9c.7.4 1.5.6 2.4.6.4 0 .7 0 1.1-.1v-1.9c-.3.1-.7.1-1 .1-.7 0-1.4-.1-2.1-.4V4.4c.7.1 1.4.3 2 .6.3.1.7 0 .8-.2.2-.2.2-.5 0-.7-.5-.4-1.1-.7-1.7-.9z" fill="#000"/></svg>TikTok: @merishaw.school</a></li>
-                    <li><a href="https://facebook.com/merishawschool" target="_blank" rel="noreferrer noopener"><svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1.5 13.2h-1.2v4.5h-2.4v-4.5H8.7V11h1.2V9.2c0-1.2.7-2.9 2.9-2.9l2.1.0v2.3h-1.4c-.2 0-.6.1-.6.6V11h2l-.3 4.2z" fill="#000"/></svg>Facebook: Merishaw School</a></li>
-                </ul>
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://instagram.com/merishawschool" target="_blank" rel="noopener" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://twitter.com/merishawschool" target="_blank" rel="noopener" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@merishaw.school" target="_blank" rel="noopener" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://facebook.com/merishawschool" target="_blank" rel="noopener" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom center-text">
-            <p>&copy; 2026 Merishaw School. All rights reserved.</p>
+            <div class="footer-bottom-content">
+                <p>&copy; 2026 Merishaw School. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Accessibility</a>
+                </div>
+            </div>
         </div>
     </footer>
 

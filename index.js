@@ -347,3 +347,214 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Search Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+
+    if (!searchInput || !searchBtn) return;
+
+    // Search button click handler
+    searchBtn.addEventListener('click', function() {
+        performSearch();
+    });
+
+    // Enter key handler
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    function performSearch() {
+        const query = searchInput.value.trim().toLowerCase();
+        if (!query) return;
+
+        // Get all sections that can be searched
+        const sections = document.querySelectorAll('section[id]');
+        let foundSection = null;
+
+        // Search through section content
+        sections.forEach(section => {
+            const content = section.textContent.toLowerCase();
+            if (content.includes(query)) {
+                foundSection = section;
+            }
+        });
+
+        // If found, scroll to section
+        if (foundSection) {
+            foundSection.scrollIntoView({ behavior: 'smooth' });
+            // Highlight the section briefly
+            foundSection.style.transition = 'background-color 0.3s ease';
+            foundSection.style.backgroundColor = 'rgba(197, 160, 89, 0.1)';
+            setTimeout(() => {
+                foundSection.style.backgroundColor = '';
+            }, 2000);
+        } else {
+            // Show no results message
+            showSearchMessage('No results found for "' + query + '"');
+        }
+
+        // Clear search input
+        searchInput.value = '';
+    }
+
+    function showSearchMessage(message) {
+        // Create message element
+        const messageEl = document.createElement('div');
+        messageEl.textContent = message;
+        messageEl.style.cssText = `
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--clr-maroon);
+            color: var(--clr-white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            z-index: 10000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        `;
+
+        document.body.appendChild(messageEl);
+
+        // Remove after 3 seconds
+        setTimeout(() => {
+            messageEl.remove();
+        }, 3000);
+    }
+});
+
+// Newsletter Form Handling
+document.addEventListener('DOMContentLoaded', function() {
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterEmail = document.getElementById('newsletter-email');
+    const newsletterConsent = document.getElementById('newsletter-consent');
+
+    if (!newsletterForm || !newsletterEmail || !newsletterConsent) return;
+
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const email = newsletterEmail.value.trim();
+        const consent = newsletterConsent.checked;
+
+        // Basic validation
+        if (!email) {
+            showFormMessage('Please enter your email address.', 'error');
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            showFormMessage('Please enter a valid email address.', 'error');
+            return;
+        }
+
+        if (!consent) {
+            showFormMessage('Please agree to receive updates.', 'error');
+            return;
+        }
+
+        // Show loading state
+        const submitBtn = newsletterForm.querySelector('.cta-button');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="button-text">Subscribing...</span><i class="fas fa-spinner fa-spin"></i>';
+        submitBtn.disabled = true;
+
+        // Simulate form submission (replace with actual API call)
+        setTimeout(() => {
+            // Success
+            showFormMessage('Thank you for subscribing! Welcome to the Merishaw community.', 'success');
+
+            // Reset form
+            newsletterEmail.value = '';
+            newsletterConsent.checked = false;
+
+            // Restore button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }, 2000);
+    });
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function showFormMessage(message, type) {
+        // Remove existing messages
+        const existingMessage = newsletterForm.querySelector('.form-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+
+        // Create message element
+        const messageEl = document.createElement('div');
+        messageEl.className = 'form-message';
+        messageEl.textContent = message;
+        messageEl.style.cssText = `
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            text-align: center;
+            ${type === 'success' ?
+                'background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;' :
+                'background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;'
+            }
+        `;
+
+        // Insert after form
+        newsletterForm.appendChild(messageEl);
+
+        // Auto-remove success messages after 5 seconds
+        if (type === 'success') {
+            setTimeout(() => {
+                messageEl.remove();
+            }, 5000);
+        }
+    }
+});
+
+// Language Selector Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const languageSelect = document.getElementById('language-select');
+
+    if (!languageSelect) return;
+
+    languageSelect.addEventListener('change', function() {
+        const selectedLang = this.value;
+
+        // Show language change message
+        const messageEl = document.createElement('div');
+        messageEl.textContent = `Language changed to ${selectedLang === 'en' ? 'English' : selectedLang === 'sw' ? 'Swahili' : 'French'}`;
+        messageEl.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background-color: var(--clr-gold);
+            color: var(--clr-maroon);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            z-index: 10000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        `;
+
+        document.body.appendChild(messageEl);
+
+        // Remove after 3 seconds
+        setTimeout(() => {
+            messageEl.remove();
+        }, 3000);
+
+        // Here you would typically reload the page with the selected language
+        // or update content dynamically based on the selected language
+        console.log('Language changed to:', selectedLang);
+    });
+});
+
