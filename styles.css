@@ -88,15 +88,6 @@ body.splash-active {
     gap: 1.4rem;
 }
 
-.splash-circle {
-    width: 220px;
-    height: 220px;
-    border: 8px solid var(--clr-maroon);
-    border-radius: 50%;
-    box-shadow: 0 0 0 20px rgba(123, 17, 19, 0.15), 0 20px 60px rgba(0, 0, 0, 0.35);
-    animation: bombRotate 2s linear infinite, bombPulse 1s ease-in-out infinite alternate;
-}
-
 .splash-graffiti {
     display: flex;
     justify-content: center;
@@ -122,7 +113,6 @@ body.splash-active {
     box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.05);
     opacity: 0;
     transform: scale(0.5);
-    animation: digitGlow 2.2s ease-in-out infinite alternate;
 }
 
 .splash-welcome {
@@ -134,27 +124,6 @@ body.splash-active {
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
     animation-delay: 4s;
-}
-
-@keyframes bombRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-@keyframes bombPulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 20px rgba(123, 17, 19, 0.15), 0 20px 60px rgba(0, 0, 0, 0.35);
-    }
-    100% {
-        transform: scale(1.1);
-        box-shadow: 0 0 0 32px rgba(123, 17, 19, 0.12), 0 24px 70px rgba(0, 0, 0, 0.35);
-    }
-}
-
-@keyframes digitGlow {
-    0% { filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.45)); }
-    100% { filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8)); }
 }
 
 @keyframes digitEnlarge {
@@ -179,6 +148,54 @@ body.splash-active {
     }
     100% {
         transform: translateY(100px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+@keyframes pixelSlide {
+    0% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+        filter: none;
+    }
+    50% {
+        transform: translateX(50px) scale(1.1);
+        opacity: 0.8;
+        filter: brightness(1.2);
+    }
+    100% {
+        transform: translateX(200px) scale(0.8);
+        opacity: 0;
+        filter: brightness(0.5);
+    }
+}
+
+@keyframes rocketLaunch {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-30px) scale(1.2);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(-150px) scale(0.3);
+        opacity: 0;
+    }
+}
+
+@keyframes lieDown {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: rotate(-10deg) scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: rotate(-90deg) scale(0.5);
         opacity: 0;
     }
 }

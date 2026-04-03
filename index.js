@@ -285,21 +285,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Hide 3, show 2
     setTimeout(() => {
-        digit3.style.opacity = '0';
-        digit2.style.opacity = '1';
-        digit2.style.animation = 'digitEnlarge 1s ease-out forwards';
+        digit3.style.animation = 'pixelSlide 1s ease-out forwards';
+        setTimeout(() => {
+            digit3.style.display = 'none';
+            digit2.style.opacity = '1';
+            digit2.style.animation = 'digitEnlarge 1s ease-out forwards';
+        }, 100);
     }, 2000);
 
     // Hide 2, show 1
     setTimeout(() => {
-        digit2.style.opacity = '0';
-        digit1.style.opacity = '1';
-        digit1.style.animation = 'digitEnlarge 1s ease-out forwards';
+        digit2.style.animation = 'rocketLaunch 1s ease-out forwards';
+        setTimeout(() => {
+            digit2.style.display = 'none';
+            digit1.style.opacity = '1';
+            digit1.style.animation = 'digitEnlarge 1s ease-out forwards';
+        }, 100);
     }, 3500);
 
-    // Hide 1 and start welcome collapse
+    // Hide 1 with lie down effect
     setTimeout(() => {
-        digit1.style.opacity = '0';
+        digit1.style.animation = 'lieDown 1s ease-out forwards';
+        setTimeout(() => {
+            digit1.style.display = 'none';
+        }, 1000);
 
         // Start welcome text collapse animation
         const welcomeText = document.querySelector('.splash-welcome');
@@ -323,20 +332,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 5000);
 
-    // Show VOILA! after all letters have fallen
+    // Hide splash after all letters have fallen
     setTimeout(() => {
-        const welcomeText = document.querySelector('.splash-welcome');
-        if (welcomeText) {
-            welcomeText.textContent = 'VOILA!';
-            welcomeText.style.animation = 'fadeInUp 0.5s ease forwards';
-        }
-
-        // Hide splash after VOILA!
-        setTimeout(() => {
-            clearInterval(matrixInterval);
-            splash.classList.add('hide');
-            body.classList.remove('splash-active');
-        }, 1000);
+        clearInterval(matrixInterval);
+        splash.classList.add('hide');
+        body.classList.remove('splash-active');
     }, 7500);
 
     // Remove element
