@@ -1,3 +1,77 @@
+// Recognition cards fade-in on scroll
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.recognition-item');
+    if (!('IntersectionObserver' in window)) {
+        // Fallback: show all
+        cards.forEach(card => card.classList.add('visible'));
+        return;
+    }
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    cards.forEach(card => observer.observe(card));
+});
+// Lottie and GSAP animations for all four recognition cards
+document.addEventListener('DOMContentLoaded', function() {
+    // STEM: SVG bubbling handled by CSS
+
+    // United Nations: Globe CSS handled by CSS
+
+    // World Scholars: Lottie
+    var lottieContainer = document.getElementById('lottie-scholar');
+    if (window.lottie && lottieContainer) {
+        var lottieAnim = lottie.loadAnimation({
+            container: lottieContainer,
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            path: 'https://assets10.lottiefiles.com/packages/lf20_2ks3pjua.json' // Graduation cap animation
+        });
+        var scholarCard = document.querySelector('.recognition-scholars');
+        if (scholarCard) {
+            scholarCard.addEventListener('mouseenter', function() {
+                lottieAnim.play();
+            });
+            scholarCard.addEventListener('mouseleave', function() {
+                lottieAnim.stop();
+            });
+        }
+    } else if (lottieContainer) {
+        lottieContainer.innerHTML = '<i class="fas fa-graduation-cap"></i>';
+    }
+
+    // Global Partnership: GSAP handshake
+    if (window.gsap) {
+        var handshake = document.getElementById('handshake-icon');
+        var parent = handshake && handshake.closest('.recognition-hands');
+        if (handshake && parent) {
+            var shaking = false;
+            parent.addEventListener('mouseenter', function() {
+                if (shaking) return;
+                shaking = true;
+                gsap.to(handshake, {
+                    rotation: 12,
+                    yoyo: true,
+                    repeat: 5,
+                    duration: 0.12,
+                    ease: 'power1.inOut',
+                    onComplete: function() {
+                        gsap.to(handshake, { rotation: 0, duration: 0.1, onComplete: function() { shaking = false; } });
+                    }
+                });
+            });
+            parent.addEventListener('mouseleave', function() {
+                gsap.to(handshake, { rotation: 0, duration: 0.1 });
+                shaking = false;
+            });
+        }
+    }
+});
 // Scroll-triggered hover effect for philosophy card
 document.addEventListener('DOMContentLoaded', function() {
     const philosophyCard = document.getElementById('philosophy-card');
