@@ -1,3 +1,20 @@
+// Scroll-triggered hover effect for philosophy card
+document.addEventListener('DOMContentLoaded', function() {
+    const philosophyCard = document.getElementById('philosophy-card');
+    if (!philosophyCard) return;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                philosophyCard.classList.add('active');
+            } else {
+                philosophyCard.classList.remove('active');
+            }
+        });
+    }, {
+        threshold: 0.3
+    });
+    observer.observe(philosophyCard);
+});
 // Surprising Mascot Pop-Up Animation
 // Uses Intersection Observer to detect when the mascot section comes into view
 // Then triggers a fun animation to make the mascot "pop up" surprisingly
