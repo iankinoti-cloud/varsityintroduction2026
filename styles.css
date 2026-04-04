@@ -368,6 +368,9 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .logo a {
@@ -396,7 +399,8 @@ img {
 
 .main-nav ul {
     display: flex;
-    gap: 2.5rem;
+    gap: 3rem;
+    align-items: center;
 }
 
 .main-nav a {
@@ -433,7 +437,7 @@ img {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .search-box {
@@ -1281,7 +1285,7 @@ img {
 .footer-legal a:hover {
     color: var(--clr-gold);
 }
-}
+
 
 .footer-brand p {
     font-style: italic;
