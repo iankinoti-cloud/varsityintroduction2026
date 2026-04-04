@@ -238,9 +238,10 @@
                     <p data-translate="Join our global community and receive updates on Merishaw excellence">Join  Merishaw to experience both athletic & academic excellence that defines our  Morans.</p>
                 </div>
                 <div class="newsletter-form">
-                    <form id="newsletter-form">
+                    <form id="newsletter-form" action="https://formspree.io/f/mgoppvvl" method="POST">
                         <div class="form-group">
-                            <input type="email" id="newsletter-email" placeholder="Enter your email address" required data-translate-placeholder="Enter your email address">
+                            <input type="email" name="email" id="newsletter-email" placeholder="Enter your email address" required data-translate-placeholder="Enter your email address">
+                            <input type="hidden" name="message" value="I would like to enquire more about Merishaw school!">
                             <button type="submit" class="cta-button primary-btn">
                                 <span class="button-text" data-translate="Subscribe">Subscribe</span>
                                 <i class="fas fa-paper-plane"></i>
@@ -253,6 +254,7 @@
                             </label>
                         </div>
                     </form>
+                    <!-- NOTE: Replace 'yourformid' in the action URL with your actual Formspree form ID after registering at https://formspree.io/ -->
                 </div>
             </div>
         </div>
