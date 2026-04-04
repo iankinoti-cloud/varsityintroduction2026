@@ -1,0 +1,557 @@
+/* =========================================
+   CSS Variables & Design System
+   ========================================= */
+   :root {
+    /* Colors based on text: Maroon & Cream */
+    --clr-maroon: #7b1113;
+    --clr-maroon-dark: #5a0c0e;
+    --clr-cream: #fbf9f6;
+    --clr-white: #ffffff;
+    --clr-gold: #c5a059;
+    --clr-text-main: #333333;
+    --clr-text-light: #666666;
+    --clr-footer: #1a1a1a;
+
+    /* Typography */
+    --font-serif: 'Merriweather', serif;
+    --font-sans: 'Oswald', sans-serif;
+
+    /* Transitions */
+    --transition-fast: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* =========================================
+   Reset & Base Styles
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-serif);
+    color: var(--clr-text-main);
+    background-color: var(--clr-cream);
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    color: var(--clr-maroon);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================================
+   Layout Utilities
+   ========================================= */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.block-bg {
+    background-color: var(--clr-white);
+}
+
+/* =========================================
+   Buttons
+   ========================================= */
+.cta-button {
+    display: inline-block;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    border-radius: 2px; /* Very slight rounding for classic feel */
+}
+
+.primary-btn {
+    background-color: var(--clr-maroon);
+    color: var(--clr-white);
+    border: 2px solid var(--clr-maroon);
+}
+
+.primary-btn:hover {
+    background-color: var(--clr-white);
+    color: var(--clr-maroon);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--clr-white);
+    border: 2px solid var(--clr-white);
+}
+
+.secondary-btn:hover {
+    background-color: var(--clr-white);
+    color: var(--clr-maroon);
+}
+
+/* =========================================
+   Header & Navigation
+   ========================================= */
+.site-header {
+    background-color: var(--clr-white);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.logo-subtext {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--clr-gold);
+    letter-spacing: 2px;
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.main-nav a {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    color: var(--clr-text-main);
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color var(--transition-fast);
+}
+
+/* --- Classic Underline Hover --- */
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--clr-maroon);
+    transition: width var(--transition-fast);
+}
+
+.main-nav a:hover {
+    color: var(--clr-maroon);
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* =========================================
+   Hero Section
+   ========================================= */
+.hero {
+    position: relative;
+    height: 80vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-maroon-dark);
+    /* Placeholder for background image */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: var(--clr-white);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero-title {
+    color: #fff;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow:
+        0 2px 8px rgba(0,0,0,0.85),
+        0 0 2px #000,
+        0 0 12px rgba(0,0,0,0.7);
+    position: relative;
+    z-index: 3;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+    /* Swoosh/Typewriter effect for each letter */
+    .swoosh-letter {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(30px) scale(0.9) skewX(-10deg);
+        animation: swooshIn 0.7s cubic-bezier(0.23, 1.02, 0.36, 1.01) forwards;
+    }
+
+    @keyframes swooshIn {
+        0% {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9) skewX(-10deg);
+        }
+        60% {
+            opacity: 1;
+            transform: translateY(-8px) scale(1.05) skewX(2deg);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1) skewX(0deg);
+        }
+    }
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+    color: var(--clr-cream);
+}
+
+/* =========================================
+   Philosophy Section
+   ========================================= */
+.philosophy {
+    padding: 6rem 0;
+}
+
+.philosophy-text {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-heading {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.philosophy-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--clr-text-light);
+}
+
+.ubuntu-quote {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: var(--clr-white);
+    border-left: 4px solid var(--clr-gold);
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--clr-maroon);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+/* =========================================
+   Mascot Section
+   ========================================= */
+.mascot-section {
+    padding: 6rem 0;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.mascot-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.mascot-image-wrapper {
+    position: relative;
+}
+
+/* Elegant classic framing for image with unique outline */
+.mascot-img {
+    border-radius: 4px;
+    box-shadow: 10px 10px 0px var(--clr-gold), 0 0 0 3px var(--clr-maroon);
+    transition: transform var(--transition-slow);
+    border: 2px solid var(--clr-white);
+}
+
+.mascot-img:hover {
+    transform: translateY(-5px);
+}
+
+.mascot-info p {
+    margin-bottom: 1.5rem;
+    color: var(--clr-text-light);
+}
+
+/* =========================================
+   Athletics / Varsity Section
+   ========================================= */
+.athletics-varsity {
+    padding: 6rem 0;
+}
+
+.section-header {
+    margin-bottom: 4rem;
+}
+
+.section-subheading {
+    font-style: italic;
+    color: var(--clr-text-light);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.varsity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.varsity-card {
+    background-color: var(--clr-white);
+    border: 1px solid #eaeaea;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    transition: box-shadow var(--transition-fast);
+}
+
+.varsity-card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.text-card {
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text-card h4 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--clr-text-main);
+}
+
+.text-card p {
+    color: var(--clr-text-light);
+}
+
+.image-card {
+    overflow: hidden;
+    /* Add a background in case image is missing */
+    background-color: #f0f0f0;
+    aspect-ratio: 3/4; /* Ensure perfect fit with consistent aspect ratio */
+}
+
+/* Classic Image Zoom Hover with unique outline */
+.jacket-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+    border: 3px solid var(--clr-maroon);
+    box-shadow: 0 0 10px rgba(123, 17, 19, 0.3);
+}
+
+.image-card:hover .jacket-img {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   Spirit Shop Section
+   ========================================= */
+.spirit-shop {
+    background-color: var(--clr-maroon);
+    color: var(--clr-white);
+    padding: 6rem 0;
+}
+
+.spirit-shop .section-heading {
+    color: var(--clr-gold);
+}
+
+.spirit-shop p {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    font-size: 1.1rem;
+    color: var(--clr-cream);
+}
+
+.spirit-shop .primary-btn {
+    background-color: var(--clr-gold);
+    color: var(--clr-maroon-dark);
+    border-color: var(--clr-gold);
+}
+
+.spirit-shop .primary-btn:hover {
+    background-color: transparent;
+    color: var(--clr-gold);
+}
+
+/* =========================================
+   Footer
+   ========================================= */
+.site-footer {
+    background-color: var(--clr-footer);
+    color: var(--clr-cream);
+    padding: 5rem 0 2rem 0;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-brand h2 {
+    color: var(--clr-white);
+    margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+    font-style: italic;
+    color: var(--clr-gold);
+}
+
+.footer-links h4, .footer-social h4 {
+    color: var(--clr-gold);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.site-footer ul li {
+    margin-bottom: 0.8rem;
+}
+
+.site-footer a {
+    color: #cccccc;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color var(--transition-fast);
+}
+
+/* Footer Link Underline Hover */
+.site-footer a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--clr-gold);
+    transition: width var(--transition-fast);
+}
+
+.site-footer a:hover {
+    color: var(--clr-white);
+}
+
+.site-footer a:hover::after {
+    width: 100%;
+}
+
+.footer-bottom {
+    border-top: 1px solid #333333;
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    color: #888888;
+}
+
+/* =========================================
+   Responsive Media Queries
+   ========================================= */
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .mascot-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .section-heading {
+        font-size: 2rem;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    /* Center the footer underlines on mobile */
+    .site-footer a::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
