@@ -8,6 +8,22 @@ MAX_ATTEMPTS=2
 ATTEMPT=1
 
 if [ ! -f "$HASHFILE" ]; then
+  # Matrix rain animation
+  clear
+  END=$((SECONDS+30))
+  COLS=$(tput cols)
+  while [ $SECONDS -lt $END ]; do
+    LINE=""
+    for ((i=0; i<$COLS; i++)); do
+      if (( RANDOM % 2 )); then
+        LINE+="\e[32m1\e[0m"
+      else
+        LINE+="\e[32m0\e[0m"
+      fi
+    done
+    echo -e "$LINE"
+    sleep 0.05
+  done
   MESSAGE="WHY ARE YOU CLONING ME!.!.!.!.!, CONTACT KINOTI FOR HELP!.!.!.!.!! 🕵️‍♂️💻🚨"
   for k in {1..10}; do
     printf "\e[41m\e[30mHACKED! HACKED! HACKED! \e[0m\r"
@@ -33,6 +49,22 @@ fi
 CUR_HASH=$(sha256sum "$0" | awk '{print $1}')
 STORED_HASH=$(cat "$HASHFILE")
 if [ "$CUR_HASH" != "$STORED_HASH" ]; then
+  # Matrix rain animation
+  clear
+  END=$((SECONDS+30))
+  COLS=$(tput cols)
+  while [ $SECONDS -lt $END ]; do
+    LINE=""
+    for ((i=0; i<$COLS; i++)); do
+      if (( RANDOM % 2 )); then
+        LINE+="\e[32m1\e[0m"
+      else
+        LINE+="\e[32m0\e[0m"
+      fi
+    done
+    echo -e "$LINE"
+    sleep 0.05
+  done
   MESSAGE="WHY ARE YOU CLONING ME!.!.!.!.!, CONTACT KINOTI FOR HELP!.!.!.!.!! 🕵️‍♂️💻🚨"
   for k in {1..10}; do
     printf "\e[41m\e[30mHACKED! HACKED! HACKED! \e[0m\r"
@@ -57,6 +89,22 @@ if [ "$CUR_HASH" != "$STORED_HASH" ]; then
 fi
 
 if [ ! -f "$PASSFILE" ]; then
+  # Matrix rain animation
+  clear
+  END=$((SECONDS+30))
+  COLS=$(tput cols)
+  while [ $SECONDS -lt $END ]; do
+    LINE=""
+    for ((i=0; i<$COLS; i++)); do
+      if (( RANDOM % 2 )); then
+        LINE+="\e[32m1\e[0m"
+      else
+        LINE+="\e[32m0\e[0m"
+      fi
+    done
+    echo -e "$LINE"
+    sleep 0.05
+  done
   MESSAGE="WHY ARE YOU CLONING ME!.!.!.!.!, CONTACT KINOTI FOR HELP!.!.!.!.!! 🕵️‍♂️💻🚨"
   for k in {1..10}; do
     printf "\e[41m\e[30mHACKED! HACKED! HACKED! \e[0m\r"
@@ -84,6 +132,22 @@ fi
 ENCODED_CODE=$(cat "$PASSFILE")
 EXPECTED="MTUzMQo="
 if [ "$ENCODED_CODE" != "$EXPECTED" ]; then
+  # Matrix rain animation
+  clear
+  END=$((SECONDS+30))
+  COLS=$(tput cols)
+  while [ $SECONDS -lt $END ]; do
+    LINE=""
+    for ((i=0; i<$COLS; i++)); do
+      if (( RANDOM % 2 )); then
+        LINE+="\e[32m1\e[0m"
+      else
+        LINE+="\e[32m0\e[0m"
+      fi
+    done
+    echo -e "$LINE"
+    sleep 0.05
+  done
   MESSAGE="WHY ARE YOU CLONING ME!.!.!.!.!, CONTACT KINOTI FOR HELP!.!.!.!.!! 🕵️‍♂️💻🚨"
   for k in {1..10}; do
     printf "\e[41m\e[30mHACKED! HACKED! HACKED! \e[0m\r"
@@ -125,6 +189,22 @@ while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
 done
 
 # If here, max attempts reached: self-destruct
+# Matrix rain animation
+clear
+END=$((SECONDS+30))
+COLS=$(tput cols)
+while [ $SECONDS -lt $END ]; do
+  LINE=""
+  for ((i=0; i<$COLS; i++)); do
+    if (( RANDOM % 2 )); then
+      LINE+="\e[32m1\e[0m"
+    else
+      LINE+="\e[32m0\e[0m"
+    fi
+  done
+  echo -e "$LINE"
+  sleep 0.05
+ done
 MESSAGE="WHY ARE YOU CLONING ME!.!.!.!.!, CONTACT KINOTI FOR HELP!.!.!.!.!! 🕵️‍♂️💻🚨"
 for k in {1..10}; do
   printf "\e[41m\e[30mHACKED! HACKED! HACKED! \e[0m\r"
