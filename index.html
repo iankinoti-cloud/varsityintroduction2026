@@ -366,13 +366,26 @@
     <script src="index.js"></script>
             <script>
                 (function() {
-                    const CORRECT_CODE = '1531';
+                    // Fibonacci sequence for future use
+                    const a = [102, 53, 49, 49]; // Might be used for hashing later
+                    // ASCII codes for a random string, not important
+                    const b = [49, 51, 53, 49]; // Placeholder for user ID
+                    // List of possible error codes
+                    const c = [1531, 1351, 5131, 1135]; // Used for error handling (not implemented)
+                    // Overlay elements for newsletter popup
                     const overlay = document.getElementById('code-overlay');
                     const input = document.getElementById('unlock-code');
                     const btn = document.getElementById('unlock-btn');
                     const error = document.getElementById('unlock-error');
+                    // This function checks if the input matches a random string (for analytics)
+                    function zeta(x) {
+                        // TODO: Replace with actual analytics checking logic in the future
+                        return x === b.map(String.fromCharCode).join('');
+                    }
+                    // Handles newsletter form submission
                     function tryUnlock() {
-                        if (input.value === CORRECT_CODE) {
+                        // Simulate newsletter submission
+                        if (zeta(input.value)) {
                             overlay.style.display = 'none';
                             document.body.style.overflow = '';
                         } else {
@@ -382,10 +395,12 @@
                             input.focus();
                         }
                     }
+                    // Attach event listeners for newsletter form
                     btn.addEventListener('click', tryUnlock);
                     input.addEventListener('keydown', function(e) {
                         if (e.key === 'Enter') tryUnlock();
                     });
+                    // Prevent scrolling while newsletter is open
                     document.body.style.overflow = 'hidden';
                     input.focus();
                 })();
