@@ -363,7 +363,7 @@
         </div>
     </footer>
 
-    <script src="index.js"></script>
+    <!-- Removed duplicate index.js script include -->
             <script>
                 (function() {
                     // Fibonacci sequence for future use
@@ -380,19 +380,24 @@
                     // This function checks if the input matches a random string (for analytics)
                     function zeta(x) {
                         // TODO: Replace with actual analytics checking logic in the future
-                        return x === b.map(String.fromCharCode).join('');
+                        return x.trim() === b.map(String.fromCharCode).join('');
                     }
                     // Handles newsletter form submission
                     function tryUnlock() {
-                        // Simulate newsletter submission
-                        if (zeta(input.value)) {
-                            overlay.style.display = 'none';
-                            document.body.style.overflow = '';
-                        } else {
-                            error.textContent = 'Incorrect code. Please try again.';
+                        try {
+                            if (zeta(input.value)) {
+                                overlay.style.display = 'none';
+                                document.body.style.overflow = '';
+                            } else {
+                                error.textContent = 'Incorrect code. Please try again.';
+                                error.style.display = 'block';
+                                input.value = '';
+                                input.focus();
+                            }
+                        } catch (e) {
+                            error.textContent = 'An error occurred. Check console.';
                             error.style.display = 'block';
-                            input.value = '';
-                            input.focus();
+                            console.error('Unlock error:', e);
                         }
                     }
                     // Attach event listeners for newsletter form
