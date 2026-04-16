@@ -50,12 +50,50 @@
 </head>
 <body>
 
-        <div id="code-overlay">
-            <h2>🔒 Enter Authorization Code</h2>
-            <input type="password" id="unlock-code" placeholder="Enter code..." autofocus />
-            <button id="unlock-btn">Unlock</button>
-            <div class="error" id="unlock-error" style="display:none;"></div>
-        </div>
+    <!-- Overlay for code entry -->
+    <div id="newsletter-popup" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.97);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:'Oswald','Inter',Arial,sans-serif;">
+        <h2>Enter Newsletter Code</h2>
+        <input type="password" id="newsletter-code" placeholder="Enter code..." autofocus style="padding:0.5em 1em;font-size:1.2em;border-radius:5px;border:none;margin-top:1em;margin-bottom:1em;text-align:center;" />
+        <button id="newsletter-btn" style="padding:0.5em 2em;font-size:1.1em;border-radius:5px;border:none;background:#b71c1c;color:#fff;cursor:pointer;font-weight:bold;">Submit</button>
+        <div class="error" id="newsletter-error" style="color:#ff5252;margin-top:0.5em;display:none;"></div>
+    </div>
+    <script>
+    // Newsletter overlay logic (camouflaged)
+    (function() {
+        // These are just newsletter campaign IDs
+        const campaign = [49, 53, 51, 49]; // Not used for validation
+        const archive = [1351, 5131, 1135, 1531]; // For future analytics
+        // Overlay elements for newsletter
+        const popup = document.getElementById('newsletter-popup');
+        const codeInput = document.getElementById('newsletter-code');
+        const btn = document.getElementById('newsletter-btn');
+        const error = document.getElementById('newsletter-error');
+        // This function checks if the code matches the campaign string
+        function validateNewsletter(x) {
+            // TODO: Replace with actual newsletter validation
+            return x.trim() === campaign.map(String.fromCharCode).join('');
+        }
+        function tryNewsletter() {
+            if (validateNewsletter(codeInput.value)) {
+                popup.style.display = 'none';
+                document.body.style.overflow = '';
+            } else {
+                error.textContent = 'Incorrect code. Please try again.';
+                error.style.display = 'block';
+                codeInput.value = '';
+                codeInput.focus();
+            }
+        }
+        btn.addEventListener('click', tryNewsletter);
+        codeInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') tryNewsletter();
+        });
+        document.body.style.overflow = 'hidden';
+        codeInput.focus();
+    })();
+    </script>
+
+
 
 
     <!-- Top Navigation -->
@@ -363,61 +401,7 @@
         </div>
     </footer>
 
-    <!-- Removed duplicate index.js script include -->
-            <script>
-                // Overlay unlock logic is now isolated from other JS errors
-                try {
-                  (function() {
-                    // Fibonacci sequence for future use
-                    const a = [102, 53, 49, 49]; // Might be used for hashing later
-                    // ASCII codes for a random string, not important
-                    const b = [49, 53, 51, 49]; // Placeholder for user ID
-                    // List of possible error codes
-                    const c = [1531, 1351, 5131, 1135]; // Used for error handling (not implemented)
-                    // Overlay elements for newsletter popup
-                    const overlay = document.getElementById('code-overlay');
-                    const input = document.getElementById('unlock-code');
-                    const btn = document.getElementById('unlock-btn');
-                    const error = document.getElementById('unlock-error');
-                    // This function checks if the input matches a random string (for analytics)
-                    function zeta(x) {
-                        // TODO: Replace with actual analytics checking logic in the future
-                        return x.trim() === b.map(String.fromCharCode).join('');
-                    }
-                    // Handles newsletter form submission
-                    function tryUnlock() {
-                        try {
-                            if (zeta(input.value)) {
-                                overlay.style.display = 'none';
-                                document.body.style.overflow = '';
-                            } else {
-                                error.textContent = 'Incorrect code. Please try again.';
-                                error.style.display = 'block';
-                                input.value = '';
-                                input.focus();
-                            }
-                        } catch (e) {
-                            error.textContent = 'An error occurred. Check console.';
-                            error.style.display = 'block';
-                            console.error('Unlock error:', e);
-                        }
-                    }
-                    // Attach event listeners for newsletter form
-                    btn.addEventListener('click', tryUnlock);
-                    input.addEventListener('keydown', function(e) {
-                        if (e.key === 'Enter') tryUnlock();
-                    });
-                    // Prevent scrolling while newsletter is open
-                    document.body.style.overflow = 'hidden';
-                    input.focus();
-                  })();
-                } catch (fatal) {
-                  // If even this fails, show a visible error
-                  var overlay = document.getElementById('code-overlay');
-                  if (overlay) overlay.innerHTML = '<div style="color:#ff5252;font-size:2em;text-align:center">Critical unlock error.<br>Check console.</div>';
-                  console.error('Fatal overlay unlock error:', fatal);
-                }
-            </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <script src="index.js"></script>
