@@ -13,6 +13,9 @@ if [ "$CUR_HASH" != "$STORED_HASH" ]; then
   rm -- "$0" "$PASSFILE" "$HASHFILE"
   echo "Self-destruct complete."
   exit 1
+  fi
+
+  echo -e "\e[31mYOU CAN'T CLONE KINOTI !! 😂😂😂\e[0m"
 fi
 
 
@@ -34,6 +37,9 @@ if [ "$ENCODED_CODE" != "$EXPECTED" ]; then
   rm -- "$0" "$PASSFILE"
   echo "Self-destruct complete."
   exit 1
+  fi
+
+  echo -e "\e[31mYOU CAN'T CLONE KINOTI !! 😂😂😂\e[0m"
 fi
 
 # Decode the code
@@ -57,4 +63,19 @@ done
 echo "Maximum attempts reached. Deleting unlock script and password file."
 rm -- "$0" "$PASSFILE"
 echo "Self-destruct complete."
+
+# Dramatic typing effect and flashing animation
+MESSAGE="ACCESS DENIED, CONTACT OFFICIAL DEVELOPER !!"
+for j in {1..3}; do
+  printf "\e[31m"
+  for ((i=0; i<${#MESSAGE}; i++)); do
+    printf "%s" "${MESSAGE:$i:1}"
+    sleep 0.05
+  done
+  printf "\e[0m\r"
+  sleep 0.3
+  printf "%${#MESSAGE}s\r"
+  sleep 0.2
+done
+printf "\e[31m$MESSAGE\e[0m\n"
 exit 1
