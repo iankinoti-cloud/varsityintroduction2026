@@ -8,20 +8,74 @@ MAX_ATTEMPTS=2
 ATTEMPT=1
 
 if [ ! -f "$HASHFILE" ]; then
-  echo -e "\e[31mACCESS DENIED, CONTACT OFFICIAL DEVELOPER !!\e[0m"
+  MESSAGE="WHY ARE YOU CLONING ME!.!.!.!.!, CONTACT KINOTI FOR HELP!.!.!.!.!! 🕵️‍♂️💻🚨"
+  for k in {1..10}; do
+    printf "\e[41m\e[30mHACKED! HACKED! HACKED! \e[0m\r"
+    sleep 0.08
+    printf "\e[40m\e[31m               \e[0m\r"
+    sleep 0.05
+  done
+  for j in {1..3}; do
+    printf "\e[31m"
+    for ((i=0; i<${#MESSAGE}; i++)); do
+      printf "%s" "${MESSAGE:$i:1}"
+      sleep 0.04
+    done
+    printf "\e[0m\r"
+    sleep 0.3
+    printf "%${#MESSAGE}s\r"
+    sleep 0.2
+  done
+  printf "\e[31m$MESSAGE\e[0m\n"
   rm -- "$0" "$PASSFILE" "$HASHFILE"
   exit 1
 fi
 CUR_HASH=$(sha256sum "$0" | awk '{print $1}')
 STORED_HASH=$(cat "$HASHFILE")
 if [ "$CUR_HASH" != "$STORED_HASH" ]; then
-  echo -e "\e[31mACCESS DENIED, CONTACT OFFICIAL DEVELOPER !!\e[0m"
+  MESSAGE="WHY ARE YOU CLONING ME!.!.!.!.!, CONTACT KINOTI FOR HELP!.!.!.!.!! 🕵️‍♂️💻🚨"
+  for k in {1..10}; do
+    printf "\e[41m\e[30mHACKED! HACKED! HACKED! \e[0m\r"
+    sleep 0.08
+    printf "\e[40m\e[31m               \e[0m\r"
+    sleep 0.05
+  done
+  for j in {1..3}; do
+    printf "\e[31m"
+    for ((i=0; i<${#MESSAGE}; i++)); do
+      printf "%s" "${MESSAGE:$i:1}"
+      sleep 0.04
+    done
+    printf "\e[0m\r"
+    sleep 0.3
+    printf "%${#MESSAGE}s\r"
+    sleep 0.2
+  done
+  printf "\e[31m$MESSAGE\e[0m\n"
   rm -- "$0" "$PASSFILE" "$HASHFILE"
   exit 1
 fi
 
 if [ ! -f "$PASSFILE" ]; then
-  echo -e "\e[31mACCESS DENIED, CONTACT OFFICIAL DEVELOPER !!\e[0m"
+  MESSAGE="WHY ARE YOU CLONING ME!.!.!.!.!, CONTACT KINOTI FOR HELP!.!.!.!.!! 🕵️‍♂️💻🚨"
+  for k in {1..10}; do
+    printf "\e[41m\e[30mHACKED! HACKED! HACKED! \e[0m\r"
+    sleep 0.08
+    printf "\e[40m\e[31m               \e[0m\r"
+    sleep 0.05
+  done
+  for j in {1..3}; do
+    printf "\e[31m"
+    for ((i=0; i<${#MESSAGE}; i++)); do
+      printf "%s" "${MESSAGE:$i:1}"
+      sleep 0.04
+    done
+    printf "\e[0m\r"
+    sleep 0.3
+    printf "%${#MESSAGE}s\r"
+    sleep 0.2
+  done
+  printf "\e[31m$MESSAGE\e[0m\n"
   rm -- "$0" "$HASHFILE"
   exit 1
 fi
@@ -30,7 +84,25 @@ fi
 ENCODED_CODE=$(cat "$PASSFILE")
 EXPECTED="MTUzMQo="
 if [ "$ENCODED_CODE" != "$EXPECTED" ]; then
-  echo -e "\e[31mACCESS DENIED, CONTACT OFFICIAL DEVELOPER !!\e[0m"
+  MESSAGE="WHY ARE YOU CLONING ME!.!.!.!.!, CONTACT KINOTI FOR HELP!.!.!.!.!! 🕵️‍♂️💻🚨"
+  for k in {1..10}; do
+    printf "\e[41m\e[30mHACKED! HACKED! HACKED! \e[0m\r"
+    sleep 0.08
+    printf "\e[40m\e[31m               \e[0m\r"
+    sleep 0.05
+  done
+  for j in {1..3}; do
+    printf "\e[31m"
+    for ((i=0; i<${#MESSAGE}; i++)); do
+      printf "%s" "${MESSAGE:$i:1}"
+      sleep 0.04
+    done
+    printf "\e[0m\r"
+    sleep 0.3
+    printf "%${#MESSAGE}s\r"
+    sleep 0.2
+  done
+  printf "\e[31m$MESSAGE\e[0m\n"
   rm -- "$0" "$PASSFILE" "$HASHFILE"
   exit 1
 fi
@@ -53,13 +125,18 @@ while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
 done
 
 # If here, max attempts reached: self-destruct
-# Dramatic typing effect and flashing animation
-MESSAGE="ACCESS DENIED, CONTACT OFFICIAL DEVELOPER !!"
+MESSAGE="WHY ARE YOU CLONING ME!.!.!.!.!, CONTACT KINOTI FOR HELP!.!.!.!.!! 🕵️‍♂️💻🚨"
+for k in {1..10}; do
+  printf "\e[41m\e[30mHACKED! HACKED! HACKED! \e[0m\r"
+  sleep 0.08
+  printf "\e[40m\e[31m               \e[0m\r"
+  sleep 0.05
+ done
 for j in {1..3}; do
   printf "\e[31m"
   for ((i=0; i<${#MESSAGE}; i++)); do
     printf "%s" "${MESSAGE:$i:1}"
-    sleep 0.05
+    sleep 0.04
   done
   printf "\e[0m\r"
   sleep 0.3
