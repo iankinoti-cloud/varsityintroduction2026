@@ -60,21 +60,15 @@
     <script>
     // Newsletter overlay logic (camouflaged)
     (function() {
-        // These are just campaign tracking numbers for analytics
-        const campaign = [49, 53, 51, 49]; // Actually used for validation (code: 1531)
-        const archive = [1351, 5131, 1135, 1531]; // Decoy values
+        const ACCESS_CODE = '1531';
         // Overlay elements for newsletter
         const popup = document.getElementById('newsletter-popup');
         const codeInput = document.getElementById('newsletter-code');
         const btn = document.getElementById('newsletter-btn');
         const error = document.getElementById('newsletter-error');
-        // This function checks if the code matches the campaign string
+        // Compare user input against the configured access code.
         function validateNewsletter(x) {
-            const expected = campaign.map(String.fromCharCode).join('');
-            const actual = x.trim();
-            // Debug log for troubleshooting
-            console.log('Input:', actual, 'Expected:', expected);
-            return actual === expected;
+            return x.trim() === ACCESS_CODE;
         }
         function tryNewsletter() {
             if (validateNewsletter(codeInput.value)) {
